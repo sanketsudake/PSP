@@ -1,0 +1,76 @@
+#include<map>
+
+map<string, int> studentRec;
+
+m["xyz"] = 10;
+
+m["pqr"] = 20;
+cout << m["xyz"]
+
+case #2
+#include<map>
+
+struct {
+    sdjfhsjdfh
+    jsfhsjdfh
+    sjfsdfj}
+student;
+
+map<student, int> studentRec;
+
+m["xyz"] = 10;
+
+m["pqr"] = 20;
+cout << m["xyz"]
+
+bool operator <(const student &s1, const student &s2) const {
+    return false if s1 < s2 else true;
+
+
+set
+unique strutures
+
+			 set<student> s;
+ s.insert(student);
+ s.find();
+
+
+ backtrack(curState, finalState)
+     {
+	 if ( curState == finalState) { return true; found answer }
+	 for ( all possible choices) {
+	     compute nextState based on choice i
+		 if (nextState is valid && not already visited) {
+		     mark nextState as visited;
+		     if (backTrack(nextState, finalState) == true) {
+			 return true;
+		     }
+
+
+backtrack(curState, finalState)
+ {
+    if ( curState == finalState) { return true; found answer }
+     for ( all possible choices) {
+		 compute nextState based on choice i
+     if (nextState is valid && not already visited) {
+		 mark nextState as visited;
+	 if (backTrack(nextState, finalState) == true) {
+		     return true;
+			 }
+ if (AnyStateModified) { revert state to original state; }
+	     }
+     }
+     return false;
+ }
+
+
+Puzzle Backtrack(puzzle)
+5CHAPTER 2. BACKGROUND
+(x,y) = findSquare(puzzle) //Find square with least candidates
+for i in puzzle[y][x].possibilities() //Loop through possible candidates
+puzzle[y][x] = i //Assign guess
+puzzle’ = Backtrack(puzzle) //Recursion step
+if(isValidAndComplete(puzzle’)) //Check if guess lead to solution
+return puzzle’
+//else continue with the guessing
+return null //No solution was found
