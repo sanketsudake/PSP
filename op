@@ -1,0 +1,2 @@
+#!/bin/bash
+g++ -Wall -c $1 && g++ $1 && ./a.out < $2
