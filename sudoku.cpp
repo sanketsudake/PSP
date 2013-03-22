@@ -10,7 +10,8 @@ using namespace std;
 string sudoku;
 int grid[3][3][9], rows[9][9], columns[9][9], change[9][9];
 int puzzle[9][9];
-pair<int, int> start = make_pair(0, 0);
+pair<int, int> start = make_pair(0, 0); // Starting point
+
 void init();
 int readpuzzle();
 void printpuzzle();
@@ -28,9 +29,7 @@ int main()
         init();
         cin >> sudoku;
         if(readpuzzle()){
-            if(solve(start))
-                {}
-            else
+            if(not solve(start))
                 cout << "N" << endl;
         }
         else
@@ -38,6 +37,7 @@ int main()
     }
     return 0;
 }
+// put zero in all arrays
 void init()
 {
     memset((void*)grid, 0, sizeof(int)*3*3*9);
@@ -46,10 +46,11 @@ void init()
     memset((void*)change, 0, sizeof(int)*9*9);
     memset((void*)puzzle, 0, sizeof(int)*9*9);
 }
+// reads puzzle and sets all appropriate bit
 int readpuzzle()
 {
     int row=0, col=0, digit=0 ;
-    assert(sudoku.size() == 81);
+    //    assert(sudoku.size() == 81);
     for(int i=0; i<81; i++){
         if(isdigit(sudoku[i])){
             digit = sudoku[i] - 48;
@@ -67,6 +68,7 @@ int readpuzzle()
     }
     return true;
 }
+// print puzzle at that instance
 void printpuzzle()
 {
     for(int i=0; i<9; i++){
@@ -75,15 +77,11 @@ void printpuzzle()
                 cout << puzzle[i][j];// << " ";
             else
                 cout << "-";
-            //            if((j + 1)%3 == 0)
-            //               cout << "\t";
         }
-        //        cout << endl;
-        //        if((i + 1)%3 == 0)
-        //  cout << endl;
     }
     cout << endl;
 }
+// Find next position from current position
 inline pair<int, int> next(pair<int, int> position)
 {
     if(position.second >= 8){
@@ -98,7 +96,7 @@ inline pair<int, int> next(pair<int, int> position)
 // Checks whether particular digit fits that place or not
 inline int match(pair<int, int> position,int digit)
 {
-    assert(digit != 0);
+    //    assert(digit != 0);
     int row= position.first;
     int col = position.second;
     digit = digit - 1;
@@ -106,13 +104,13 @@ inline int match(pair<int, int> position,int digit)
         return false;
     return true;
 }
-// Set digit at that position and change
+// Set digit at that position
 void pset(pair<int, int> position,int digit)
 {
     int row = position.first ;
     int col = position.second;
-    assert(digit != 0);
-    assert(change[row][col] != 1);
+    //    assert(digit != 0);
+    //    assert(change[row][col] != 1);
     puzzle[row][col] = digit;
     digit = digit - 1;
     change[row][col] = 2;
@@ -120,20 +118,22 @@ void pset(pair<int, int> position,int digit)
     columns[col][digit] += 1;
     grid[row/3][col/3][digit] += 1;
 }
+// unset digit at that position after wrong choice
 void punset(pair<int, int> position)
 {
     int row = position.first;
     int col = position.second;
-    assert(change[position.first][position.second] != 1);
-    assert(change[position.first][position.second] == 2);
+    //    assert(change[position.first][position.second] != 1);
+    //    assert(change[position.first][position.second] == 2);
     int digit = puzzle[row][col] - 1;
     rows[row][digit] -= 1;
     columns[col][digit] -= 1;
     grid[row/3][col/3][digit] -= 1;
-    assert(rows[row][digit] >= 0);
-    assert(columns[row][digit] >= 0);
-    assert(grid[row/3][col/3][digit] >= 0);
+    //    assert(rows[row][digit] >= 0);
+    //    assert(columns[row][digit] >= 0);
+    //    assert(grid[row/3][col/3][digit] >= 0);
 }
+// starting point to solve puzzle
 int solve(pair<int,int> position)
 {
     int row = position.first;
@@ -143,7 +143,6 @@ int solve(pair<int,int> position)
         printpuzzle();
         return true;
     }
-    //    cout << "#" <<position.first << position.second << "#" << endl;
     if(change[row][col] == 1){
         if(solve(next(position)))
             return true;
@@ -151,9 +150,7 @@ int solve(pair<int,int> position)
     else{
         for(int i=9; i>0; i--){
             if(match(position, i)){
-                //cout << "-" << i << "-" << endl;
                 pset(position, i);
-                //          printpuzzle();
                 if(solve(next(position)))
                     return true;
                 punset(position);

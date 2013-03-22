@@ -1,0 +1,45 @@
+int dr[] = {0, 0, -1, 1};
+int dc[] = {1, -1, 0, 0};
+solveMaze()
+{
+...
+...    
+curR and curC -> current position
+for ( i = 0; i< 4; i++) {
+nextR = curR + dr[i];
+nextC = curC + dc[i];
+if (isValid(nextR, nextC)
+{
+maze[nextR][nextC] = 0;
+solveMaze(nextR, nextC);
+}
+...
+}
+solveMaze()
+{})}}
+
+dfs(int v) {
+  if (visited[v])
+  return;
+  
+ visited[v] = true;
+ forevery adj elem i to v
+     dfs(i);
+}
+
+
+bfs(initState, nextState) {
+ q.add(initState);
+ while(!q.empty()) {
+     curState = q.pop();
+     
+     if ( curState == finalState) { return true; found answer; }
+ 
+     for (all possible choices) {
+      compute nextState based on curState;
+
+   if (valid(nextState) && !visited(nextState)) {
+          q.add(nextState);
+      }
+
+}}}
