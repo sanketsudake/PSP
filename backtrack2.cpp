@@ -3,8 +3,8 @@ using namespace std;
 #include <queue>
 #include <stack>
 int row, column, puzzle[10][10],visited[10][10],traverse[10][10];
-int dr[] = {0, 0, -1, 1, 1, -1};
-int dc[] = {1, -1, 0, 0, 1, -1};
+int dr[] = {0, 0, -1, 1, 1, -1, 1, -1};
+int dc[] = {1, -1, 0, 0, 1, -1, -1, 1};
 queue< pair<int, int> > q;
 pair<int, int> start;           // Start position
 pair<int, int> end;             // Final Position to reach
@@ -90,7 +90,7 @@ int  solvemaze(pair<int, int> position, pair<int,int> final){
         if(curpos.first == final.first && curpos.second == final.second){
             return printnodes(position, final);
         }
-        for(int i=0; i < 6;i++){
+        for(int i=0; i < 8;i++){
             nextpos.first = curpos.first + dr[i];
             nextpos.second = curpos.second + dc[i];
             if(valid(nextpos) && !isvisited(nextpos)){
