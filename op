@@ -1,2 +1,11 @@
 #!/bin/bash
-g++ -Wall -c $1 && g++ $1 && ./a.out < $2
+
+start_time=$(date +%s)
+if [ $2 ]
+then
+    g++ -Wall -c $1 && g++ $1 && ./a.out < $2
+else
+    g++ -Wall -c $1 && g++ $1 && ./a.out
+fi
+finish_time=$(date +%s)
+echo "Time duration: $((finish_time - start_time)) secs."
