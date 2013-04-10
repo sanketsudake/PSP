@@ -73,10 +73,7 @@ void printpuzzle()
 {
     for(int i=0; i<9; i++){
         for(int j=0; j<9; j++){
-            if(puzzle[i][j])
                 cout << puzzle[i][j];// << " ";
-            else
-                cout << "-";
         }
     }
     cout << endl;
@@ -136,14 +133,12 @@ void punset(pair<int, int> position)
 // starting point to solve puzzle
 int solve(pair<int,int> position)
 {
-    int row = position.first;
-    int col = position.second;
-    if( row == 9){
+    if( position.first == 9){
         cout << "Y" << endl;
         printpuzzle();
         return true;
     }
-    if(change[row][col] == 1){
+    if(change[position.first][position.second] == 1){
         if(solve(next(position)))
             return true;
     }
